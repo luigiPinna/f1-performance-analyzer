@@ -15,7 +15,7 @@ class CalendarLoaderThread(QThread):
     def run(self):
         try:
             # Setup FastF1 cache
-            cache_dir = './fastf1_cache'
+            cache_dir = '../fastf1_cache'
             os.makedirs(cache_dir, exist_ok=True)
             fastf1.Cache.enable_cache(cache_dir)
 

@@ -2,7 +2,7 @@ from PyQt5.QtWidgets import (QVBoxLayout, QLabel, QComboBox, QPushButton,
                              QFrame, QMessageBox)
 from PyQt5.QtGui import QFont
 from .base import BaseFunctionality
-from workers import SessionLoaderThread, FastestLapComparisonThread
+from src.workers import SessionLoaderThread, FastestLapComparisonThread
 
 
 class FastestLapComparison(BaseFunctionality):
