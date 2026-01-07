@@ -97,10 +97,10 @@ class TelemetryCanvas(FigureCanvas):
         self.fig.suptitle(
             f"TELEMETRY COMPARISON | {gp_name} | {session_type}\n"
             f"{lap1_info['driver']} vs {lap2_info['driver']} | Gap: {gap:.3f}s (Faster: {faster})",
-            fontsize=14, fontweight='bold', y=0.97)
+            fontsize=14, fontweight='bold', y=0.98)
 
         self.fig.tight_layout()
-        self.fig.subplots_adjust(top=0.92, hspace=0.35)
+        self.fig.subplots_adjust(top=0.88, hspace=0.35)
         self.draw()
 
 
@@ -138,10 +138,37 @@ class MainWindow(QMainWindow):
                 border-radius: 3px;
             }
             QComboBox QAbstractItemView {
-                background-color: #21262d;
-                border: 1px solid #30363d;
+                background-color: #161b22;
+                border: 1px solid #58a6ff;
+                border-radius: 6px;
                 selection-background-color: #58a6ff;
+                selection-color: #0d1117;
                 color: #f0f6fc;
+                padding: 0px;
+                outline: none;
+                min-width: 200px;
+            }
+            QComboBox QAbstractItemView::item {
+                padding: 10px 15px;
+                border-radius: 0px;
+                min-height: 28px;
+                font-size: 11px;
+            }
+            QComboBox QAbstractItemView::item:first {
+                border-top-left-radius: 5px;
+                border-top-right-radius: 5px;
+            }
+            QComboBox QAbstractItemView::item:last {
+                border-bottom-left-radius: 5px;
+                border-bottom-right-radius: 5px;
+            }
+            QComboBox QAbstractItemView::item:hover {
+                background-color: #30363d;
+            }
+            QComboBox QAbstractItemView::item:selected {
+                background-color: #58a6ff;
+                color: #0d1117;
+                font-weight: bold;
             }
             QPushButton {
                 background-color: #238636;
