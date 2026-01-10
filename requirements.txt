@@ -17,6 +17,7 @@ packaging==25.0
 pandas==2.3.3
 pillow==12.0.0
 platformdirs==4.5.0
+plotly==5.24.1
 pycparser==2.23
 PyJWT==2.10.1
 pyparsing==3.2.5
@@ -28,6 +29,7 @@ requests-cache==1.2.1
 scipy==1.16.3
 signalrcore==0.9.5
 six==1.17.0
+streamlit==1.44.1
 timple==0.1.8
 typing_extensions==4.15.0
 tzdata==2025.2
