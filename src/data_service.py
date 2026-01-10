@@ -6,24 +6,29 @@ All data loading and processing happens here, reusable by any UI (PyQt5, Streaml
 import fastf1
 import pandas as pd
 import os
+from typing import Dict, List, Tuple, Optional, Any
+from .constants import DEFAULT_CACHE_DIR, DEFAULT_SEASONS
 
 
 class F1DataService:
     """Core service for F1 data operations using FastF1"""
     
-    def __init__(self, cache_dir='./fastf1_cache'):
+    def __init__(self, cache_dir: str = DEFAULT_CACHE_DIR):
         """Initialize data service with cache configuration"""
         self.cache_dir = cache_dir
         os.makedirs(cache_dir, exist_ok=True)
         fastf1.Cache.enable_cache(cache_dir)
-        self.current_session = None
-        self.current_drivers = []
+        self.current_session: Optional[Any] = None
+        self.current_drivers: List[Dict] = []
     
-    def load_calendar(self, years=[2022, 2023, 2024, 2025]):
+    def load_calendar(self, years: List[int] = None) -> Dict[int, List[Dict]]:
         """
         Load F1 calendar for specified years
         Returns: dict mapping year -> list of GP dicts
         """
+        if years is None:
+            years = DEFAULT_SEASONS
+            
         calendar_data = {}
         
         for year in years:
@@ -46,7 +51,7 @@ class F1DataService:
         
         return calendar_data
     
-    def load_session(self, year, gp_name, session_type):
+    def load_session(self, year: int, gp_name: str, session_type: str) -> Tuple[Any, List[Dict]]:
         """
         Load a specific session and extract available drivers
         Returns: (session object, list of driver dicts)
@@ -98,7 +103,7 @@ class F1DataService:
         except Exception as e:
             raise Exception(f"Session loading failed: {str(e)}")
     
-    def compare_fastest_laps(self, driver1_abbr, driver2_abbr):
+    def compare_fastest_laps(self, driver1_abbr: str, driver2_abbr: str) -> Tuple[pd.DataFrame, pd.DataFrame, Dict, Dict]:
         """
         Find and compare fastest laps between two drivers
         Returns: (tel1, tel2, lap1_info, lap2_info)
